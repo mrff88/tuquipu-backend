@@ -1,21 +1,20 @@
+import requestID from 'express-request-id';
 import express from 'express';
-import morgan from 'morgan';
 import logger from './config/logger.js';
 import { routeNotFoundHandler, errorHandler } from './middlewares/index.js';
 
 const app = express();
 
-app.use(
-  morgan('combined', { stream: { write: (message) => logger.info(message) } })
-);
+// setup middlewares
+app.use(requestID());
+
+app.use(logger.requests);
 
 // server routes
 // eslint-disable-next-line no-unused-vars
 app.get('/', (req, res, next) => {
   res.json({ message: 'API TUQUIPU' });
 });
-
-// server middlewares
 
 app.use(routeNotFoundHandler);
 
