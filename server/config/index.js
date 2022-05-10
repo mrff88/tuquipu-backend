@@ -10,6 +10,9 @@ const config = {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
   },
+  token: {
+    secret: process.env.JWT_SECRET,
+  },
 };
 
 export default config;
