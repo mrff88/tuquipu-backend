@@ -2,6 +2,9 @@
   "name": "tuquipu-backend",
   "type": "module",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.13.0"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
