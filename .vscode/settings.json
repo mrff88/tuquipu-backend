@@ -7,5 +7,8 @@
   "files.insertFinalNewline": true,
   "files.eol": "\n",
   "prettier.trailingComma": "es5",
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "files.associations": {
+    "*.env": "plaintext"
+  }
 }
