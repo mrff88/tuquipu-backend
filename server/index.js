@@ -7,6 +7,7 @@ const app = express();
 
 // setup middlewares
 app.use(requestID());
+app.use(express.json());
 
 app.use(logger.requests);
 
