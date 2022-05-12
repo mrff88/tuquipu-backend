@@ -10,13 +10,21 @@ const routeNotFoundHandler = (req, res, next) => {
 
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
-  const { message, statusCode = 500, level = 'error' } = err;
+  const { message, level = 'error' } = err;
+  let { statusCode = 500 } = err;
   const log = `${logger.header(req)} ${statusCode} ${message}`;
+
+  // Validation Errors
+  if (err.message.startsWith('ValidationError')) {
+    statusCode = 422;
+  }
 
   logger[level](log);
 
   res.status(statusCode);
   res.json({
+    error: true,
+    statusCode,
     message,
   });
 };
