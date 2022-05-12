@@ -46,6 +46,12 @@ const usersSchema = new Schema(
       enum: ['Administrador', 'Usuario'],
       default: 'Usuario',
     },
+    state: {
+      type: String,
+      required: true,
+      enum: ['activo', 'inactivo'],
+      default: 'inactivo',
+    },
   },
   {
     versionKey: false,
@@ -81,6 +87,9 @@ usersSchema.statics.auth = async function (req) {
 
   if (!validPassword)
     throw utils.errorResponseHandler(403, 'Usuario o contraseña incorrecta');
+
+  if (userFound.state === 'inactivo')
+    throw utils.errorResponseHandler(401, 'Usuario no activo');
 
   const { _id, userType } = userFound;
 
