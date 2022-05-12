@@ -2,6 +2,7 @@ import requestID from 'express-request-id';
 import express from 'express';
 import cors from 'cors';
 import logger from './config/logger.js';
+import api from './api/index.js';
 import { routeNotFoundHandler, errorHandler } from './middlewares/index.js';
 
 const app = express();
@@ -24,6 +25,8 @@ app.use(logger.requests);
 app.get('/', (req, res, next) => {
   res.json({ message: 'API TUQUIPU' });
 });
+
+app.use('/api', api);
 
 app.use(routeNotFoundHandler);
 
