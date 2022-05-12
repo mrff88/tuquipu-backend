@@ -1,3 +1,4 @@
+import User from '../api/users/model.js';
 import logger from '../config/logger.js';
 
 const routeNotFoundHandler = (req, res, next) => {
@@ -29,4 +30,28 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
-export { routeNotFoundHandler, errorHandler };
+const adminOnly = async (req, res, next) => {
+  const { authData = {} } = req;
+  const { _id } = authData;
+
+  try {
+    const userFound = await User.findById(_id).exec();
+
+    if (!userFound || userFound.userType !== 'Administrador') {
+      const message = 'Forbidden';
+
+      next({
+        success: false,
+        message,
+        statusCode: 403,
+        type: 'warn',
+      });
+    } else {
+      next();
+    }
+  } catch (error) {
+    next(new Error(error));
+  }
+};
+
+export { routeNotFoundHandler, errorHandler, adminOnly };
