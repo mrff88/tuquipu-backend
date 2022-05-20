@@ -7,7 +7,7 @@ const id = async (req, res, next, clientId) => {
       req.clientData = foundClient;
       next();
     } else {
-      const message = `No se encontro ${Client.modelName}`;
+      const message = `No se encontro al cliente`;
 
       next({
         message,

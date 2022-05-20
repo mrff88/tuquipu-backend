@@ -7,7 +7,7 @@ const id = async (req, res, next, userId) => {
       req.user = foundUser;
       next();
     } else {
-      const message = `No se encontro ${User.modelName}`;
+      const message = `No se encontro al usuario`;
 
       next({
         message,
