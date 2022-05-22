@@ -10,6 +10,6 @@ const { port } = config.server;
 
 const server = http.createServer(app);
 
-server.listen(port, () => {
+server.listen(port || 5000, () => {
   console.log(`Server started at port ${port}`);
 });
