@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 const config = {
   server: {
-    port: process.env.SERVER_PORT,
+    port: process.env.PORT,
   },
   database: {
     protocol: process.env.DATABASE_PROTOCOL,
