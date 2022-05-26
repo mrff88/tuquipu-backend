@@ -1,4 +1,11 @@
 import 'dotenv/config';
+import dotenv from 'dotenv';
+import path from 'path';
+import __dirname from '../../environment.js';
+
+dotenv.config({
+  path: path.resolve(__dirname, `${process.env.NODE_ENV}.env`),
+});
 
 const config = {
   server: {
